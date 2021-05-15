@@ -13,4 +13,6 @@ var x= document.getElementById("studentlogin");
         }
         function sgotosignup(){
             window.location.href = "file:///C:/Users/Ganapathi%20Raman/Desktop/mini%20project/html/signuppage.html";
+            // window.location.replace("");
+            // setTimeout("sgotosignup()", 100);
         }
