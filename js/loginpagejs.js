@@ -11,3 +11,8 @@ var x= document.getElementById("studentlogin");
             y.style.left= "0px";
             z.style.left= "0px";
         }
+        function sgotosignup(){
+            window.location.href = "http://127.0.0.1:5500/html/signuppage.html";
+            // window.location.replace("");
+            // setTimeout("sgotosignup()", 100);
+        }

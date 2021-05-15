@@ -53,6 +53,7 @@ body{
     border-bottom: 2px solid;
     border-color:white;
     /* outline: none; */
+    color :aliceblue;
     background: transparent;
 }
 .input{

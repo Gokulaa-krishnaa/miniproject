@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGNUP</title>
+    <link rel="stylesheet" href="../css/signuppage.css" >
+</head>
+<body>
+    <div class="detailsformbox">
+    <h1>DETAILS</h1>
+    <form id="studentsignup" class="input">
+            <label for="name">FULL NAME:</label>
+            <input type="text" class="inputfield" placeholder="NAME" required>
+            <br><br>
+            <label for="dept">DEPARTMENT:</label>
+            <input type="text" class="inputfield" placeholder="DEPT" required>
+            <br><br>
+            <label for="class">CLASS:</label>
+            <input type="text" class="inputfield" placeholder="CLASS" required>
+            <br><br>
+            <label for="year">YEAR:</label>
+            <input type="text" class="inputfield" placeholder="YEAR" required>
+            <br><br>
+            <label for="reg-no.">REGISTER NUMBER:</label>
+            <input type="text" class="inputfield" placeholder="REG NO." required>
+            <br><br>
+            <label for="clg-id">COLLEGE-ID:</label>
+            <input type="text" class="inputfield" placeholder="COLLEGE-ID" required>
+            <br><br>
+            <label for="mobilenumber">MOBILE NUMBER:</label>
+            <input type="text" class="inputfield" placeholder="MOBILE NO." required>
+            <br><br>
+            <label for="gender">GENDER:</label>
+            <input type="radio" id="male" name="gender" placeholder="male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" placeholder="female">
+            <label for="female">Female</label>
+            <input type="radio" id="other" name="gender" placeholder="other">
+            <label for="other">Other</label>
+            <br><br>
+            <label for="mailid">MAILD-ID:</label>
+            <input type="email" class="inputfield" placeholder="MAIL-ID" required>
+            <br><br>
+            <label for="password">PASSWORD:</label>
+            <input type="password" class="inputfield" placeholder="PASSWORD" required>
+            <br><br>
+            <label for="password">CONFIRM PASSWORD:</label>
+            <input type="password" class="inputfield" placeholder="CONFIRM-PASSWORD" required>
+            <br><br><br>
+            <button type="button" id="backbutton" class="submitbutton" onclick="gotoprev()" >BLACK</button>
+            <button type="button" id="clearbutton" class="submitbutton" onclick="refresh()" >CLEAR</button>
+            <button type="button" id="signupbutton" class="submitbutton" >SIGNUP</button>
+    </form>
+</div>
+<script src="../js/signuppage.js"></script>
+</body>
+</html>
