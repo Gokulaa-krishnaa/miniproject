@@ -12,7 +12,7 @@ var x= document.getElementById("studentlogin");
             z.style.left= "0px";
         }
         function sgotosignup(){
-            window.location.href = "http://127.0.0.1:5500/html/signuppage.html";
+            window.location.href = "file:///C:/Users/Ganapathi%20Raman/Desktop/mini%20project/html/signuppage.html";
             // window.location.replace("");
             // setTimeout("sgotosignup()", 100);
         }

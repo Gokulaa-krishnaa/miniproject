@@ -1,6 +1,6 @@
 function gotoprev(){
-    window.location.replace("http://127.0.0.1:5500/html/loginhtml.html");
+    window.location.replace("file:///C:/Users/Ganapathi%20Raman/Desktop/mini%20project/html/loginhtml.html");
 }    
 function refresh(){
-    window.location.replace("http://127.0.0.1:5500/html/signuppage.html");
+    window.location.replace("file:///C:/Users/Ganapathi%20Raman/Desktop/mini%20project/html/signuppage.html");
     }
