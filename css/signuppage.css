@@ -35,7 +35,7 @@ h1{
     border-bottom: 2px solid;
     border-color:white;
     background: transparent;
-    color :aliceblue;
+    color :#EAC67A;
     outline: none;
 }
 .submitbutton{
@@ -46,6 +46,9 @@ h1{
     background-color:#EAC67A;
     border-radius: 30px;
     outline: none;
+}
+.dropdown{
+    background-color: black;
 }
 #backbutton{
     margin-left : 3%;
