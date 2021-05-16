@@ -12,5 +12,5 @@ var x= document.getElementById("studentlogin");
             z.style.left= "0px";
         }
         function sgotosignup(){
-            window.location.href = "signuppage.html"; 
+            window.location.href = "signuppage.php"; 
         }

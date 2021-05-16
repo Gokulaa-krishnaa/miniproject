@@ -1,6 +1,6 @@
 function gotoprev(){
-    window.location.replace("loginhtml.html");
+    window.location.replace("loginhtml.php");
 }    
 function refresh(){
-    window.location.replace("signuppage.html");
+    window.location.replace("signuppage.php");
     }
