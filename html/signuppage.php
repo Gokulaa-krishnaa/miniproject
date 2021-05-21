@@ -1,16 +1,7 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIGNUP</title>
-    <link rel="stylesheet" href="../css/signuppage.css" >
-</head>
 <?php
 if(isset($_POST['signup']))
 {
+
 $name=$_POST['name'];
 $dept=$_POST['dept'];
 $class=$_POST['class'];
@@ -36,20 +27,34 @@ $pass2=$_POST['pass2'];
 		$stmt->store_result();
 		$rnum=$stmt->num_rows;
 		if($rnum==0){
-			$stmt->prepare("insert into signup values(?,?,?,?,?,?,?,?,?,?)");
+			$stmt->prepare("insert into signup(name,department,class,year,register,collageid,mobile,gender,mailid,password) values(?,?,?,?,?,?,?,?,?,?)");
 			$stmt->bind_param("ssssisisss",$name,$dept,$class,$year,$reg,$collageid,$mobile,$gender,$mailid,$pass1);
 			$stmt->execute();
 			echo "<script>
-		        window.location.href='../html/profile.php';
+				alert('registration successful');
+		         window.location.href='loginhtml.php';  
 		</script>";
 		}else{
-			echo "<script>alert('user already exist with reg no: $reg')</script>";
+			echo "<script>alert('user already exist with reg no: $reg')
+			     
+			</script>";
 		}
 		$stmt->close();
 		$conn->close();
 }
 }
+
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGNUP</title>
+    <link rel="stylesheet" href="../css/signuppage.css" >
+</head>
+
 <body>
     <div class="detailsformbox">
     <h1>DETAILS</h1>

@@ -1,36 +1,33 @@
 <?php 
 
 $conn=new mysqli('localhost','root','','voter','8111');
-
-if(isset($_POST['username'])){
-    
-    $uname=$_POST['username'];
+if(isset($_POST['reg'])){
+    $reg=$_POST['reg'];
     $password=$_POST['password'];
-    
-    $sql="select name,password from signup where name=? AND password=?";
+    $sql="select register,password from signup where register=? AND password=?";
     
     $stmt=$conn->prepare($sql);
-	$stmt->bind_param("ss",$uname,$password);
+	$stmt->bind_param("ss",$reg,$password);
 	$stmt->execute();
 	$stmt->store_result();
 	$rnum=$stmt->num_rows;
 	if($rnum>=1){
+        setcookie('reg',$reg);
         echo "<script>
 		window.location.href='../html/profile.php';
 		</script>";
-     exit();
+	
     }
     else{
-		$user_check="select name from signup where name=?";
+		$user_check="select register from signup where register=?";
 		$stmt=$conn->prepare($user_check);
-		$stmt->bind_param("s",$uname);
+		$stmt->bind_param("s",$reg);
 		$stmt->execute();
 		$stmt->store_result();
 		if($stmt->num_rows==0)
-			echo "<script>alert('USER NOT EXISTS')</script>";
+			echo "<script>alert('USER NOT EXISTS');</script>";
 		else
-			echo "<script>alert('INCORRECT PASSWORD')</script>";
-   
+			echo "<script>alert('INCORRECT PASSWORD');</script>";
     }
         
 }
@@ -54,8 +51,8 @@ if(isset($_POST['username'])){
             <button type="button" class="studentteachertoggle" id="student" onclick="student()">STUDENT</button>
             <button type="button" class="studentteachertoggle" id="staffs" onclick="teacher()">TEACHER</button>
         </div>
-        <form id="studentlogin" class="input" method='post'>
-            <input type="text" class="inputfield" placeholder="STUDENT'S-USER-ID" name="username" required>
+        <form id="studentlogin" class="input" method="post">
+            <input type="text" class="inputfield" placeholder="STUDENT'S REG NO" name="reg" required>
             <br><br>
             <input type="password" class="inputfield" placeholder="PASSWORD" name="password" required>
             <br><br><br>
