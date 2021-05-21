@@ -1,0 +1,22 @@
+body{
+    background-image: url("../images/signupcover.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+h2{
+    text-align: center;
+}
+p{
+    color :black;
+}
+.profilecard{
+    background-color: beige;
+    position: relative;
+    width: 550px;
+    height: 550px;
+    padding: 5px;
+    margin: 3% auto;
+    border-radius: 5%;
+    /* overflow: hidden ; */
+    opacity: 92%;
+}
