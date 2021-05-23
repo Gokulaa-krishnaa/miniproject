@@ -1,6 +1,6 @@
 <?php 
 
-$conn=new mysqli('localhost','root','','voter');
+$conn=new mysqli('localhost','root','','voter','8111');
 if(isset($_POST['reg'])){
     $reg=$_POST['reg'];
     $password=$_POST['password'];
@@ -68,7 +68,7 @@ if(isset($_POST['reg'])){
             <button type="button" id="signupbutton" class="submitbutton" onclick="tgotosignup()">SIGNUP</button>
         </form>
     </div>
-   <script src="../js/login&signuppagejs.js"></script>
+   <script src="../js/loginpagejs.js"></script>
 
 </body>
 </html>
