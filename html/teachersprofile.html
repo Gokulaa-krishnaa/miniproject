@@ -1,17 +1,3 @@
-
-<?php 
-
-$conn=new mysqli('localhost','root','','voter');
-
-
-
-
-$reg=$_COOKIE['reg'];
-$sql = "SELECT * FROM signup where register=$reg";
-$results =mysqli_query($conn,$sql);
-$details =mysqli_fetch_all($results,MYSQLI_ASSOC);
-$detail=$details[0];
-?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -37,8 +23,8 @@ $detail=$details[0];
             </div>
             <div class="textdetailslabel col-3">
                 <div class="detailslines ">NAME:   <br></div>
-                <div class="detailslines">    DEPT & CLASS: <br> </div>  
-                <div class="detailslines">    YEAR:  <br></div>
+                <div class="detailslines">    DEPT: <br> </div>  
+                <div class="detailslines">    COORDINATOR OF:  <br></div>
                 <div class="detailslines">    REG. No:   <br></div>
                 <div class="detailslines">    COLLEGE.id:   <br></div>
                 <div class="detailslines">    MOBILE No.:  <br></div>

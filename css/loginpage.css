@@ -2,8 +2,7 @@ body{
  background-image: url("../images/votingbgpic.jpg");
  background-size: cover;
  background-repeat: no-repeat;
- /* background-color: black; */
-}
+ background-color: black;}
 .entrybox{
     background-color: black;
     position: relative;
