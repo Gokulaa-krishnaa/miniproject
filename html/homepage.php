@@ -1,14 +1,20 @@
 <?php 
 
-$conn= new mysqli('localhost','root','','voter');
+$conn=new mysqli('localhost','root','','voter','8111');
+$collageid=$_COOKIE["collageid"];
+$sql = "SELECT * FROM starter";
+$results =mysqli_query($conn,$sql);
+$result=mysqli_fetch_all($results,MYSQLI_ASSOC);
+$election=[];
+foreach($result as $i)
+{
+    if($i["startby"]==$collageid)
+    {
+        array_push($election,$i);
+    }
+}
 
-$sql_query="SELECT * FROM signup";
 
-$sql_res=mysqli_query($conn,$sql_query);
-
-$details= mysqli_fetch_all($sql_res,MYSQLI_ASSOC);
-
-print_r($details);
 ?>
 
 <!DOCTYPE html>
@@ -29,13 +35,27 @@ print_r($details);
     </div>
 </div>
 	<div class="maincontainer row">
+        <?php if(count($election)>0){
+            foreach($election as $i)
+            { ?>
         <div class="votingcard center col-3">
-            <h5>hi</h5>
+            <h5><?php 
+            echo $i["pollid"];
+            ?></h5><br>
+            <h5><?php 
+            echo $i["name"];
+            ?></h5><br>
+            <h5><?php 
+            echo $i["roll"];
+            ?></h5><br>
+            <form method="post" action="more.php">
+            <input type="hidden" value="<?php echo $i["pollid"] ?>" name="id"/>
+            <input type="submit" value="more" name="more"/>
+            </form>
 
         </div>
-        <div class="votingcard col-3"></div>
-        <div class="votingcard col-3"></div>
-        <div class="votingcard col-3"></div>
+            <?php }
+        } ?>
     </div>
         
 

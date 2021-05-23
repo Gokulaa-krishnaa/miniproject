@@ -1,43 +1,42 @@
 <?php
+$dept_codes=["dept"=>["CSE"=>'1',"MECH"=>"2","ECE"=>"3","EEE"=>"4"],"year"=>["1"=>"1","2"=>"2","3"=>"3","4"=>"4"],"sec"=>["A"=>"1","B"=>"2","C"=>"3","D"=>"4"]];
 if(isset($_POST['signup']))
 {
 
 $name=$_POST['name'];
 $dept=$_POST['dept'];
 $cdeptt=$_POST['deptt'];
-$cclass=$_POST['class'];
-$cyear=$_POST['year'];
-$reg=$_POST['reg'];
+$cclass=$_POST['cclass'];
+$cyear=$_POST['cyear'];
 $collageid=$_POST['collageid'];
 $mobile=$_POST['mobile'];
 $gender=$_POST['gender'];
 $mailid=$_POST['mailid'];
 $pass1=$_POST['pass1'];
 $pass2=$_POST['pass2'];
-$check=$cdeptt+$cclass+$cyear;
-print_r($check);
-	$conn=new mysqli('localhost','root','','voter');
+$coord=$dept_codes["year"][$cyear].$dept_codes["dept"][$cdeptt].$dept_codes["sec"][$cclass];
+$conn=new mysqli('localhost','root','','voter','8111');
 	if($conn->connect_error)
 	{
 		die('connection failed'.$conn->connect_error);
 	}else{
-		$sql="SELECT register from signup where register=?";
+		$sql="SELECT collageid from teacher where collageid=?";
 		$stmt=$conn->prepare($sql);
-		$stmt->bind_param("s",$reg);
+		$stmt->bind_param("s",$collageid);
 		$stmt->execute();
-		$stmt->bind_result($reg);
+		$stmt->bind_result($collageid);
 		$stmt->store_result();
 		$rnum=$stmt->num_rows;
 		if($rnum==0){
-			$stmt->prepare("insert into signup(name,department,class,year,register,collageid,mobile,gender,mailid,password) values(?,?,?,?,?,?,?,?,?,?)");
-			$stmt->bind_param("ssssisisss",$name,$dept,$class,$year,$reg,$collageid,$mobile,$gender,$mailid,$pass1);
+			$stmt->prepare("insert into teacher(name,department,coordinator,collageid,mobile,gender,mailid,password) values(?,?,?,?,?,?,?,?)");
+			$stmt->bind_param("ssssssss",$name,$dept,$coord,$collageid,$mobile,$gender,$mailid,$pass1);
 			$stmt->execute();
 			echo "<script>
 				alert('registration successful');
 		         window.location.href='loginhtml.php';  
 		</script>";
 		}else{
-			echo "<script>alert('user already exist with reg no: $reg')
+			echo "<script>alert('user already exist with collage_id: $collageid')
 			     
 			</script>";
 		}

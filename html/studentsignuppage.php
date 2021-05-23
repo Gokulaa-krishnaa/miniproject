@@ -14,7 +14,7 @@ $mailid=$_POST['mailid'];
 $pass1=$_POST['pass1'];
 $pass2=$_POST['pass2'];
 
-	$conn=new mysqli('localhost','root','','voter');
+$conn=new mysqli('localhost','root','','voter','8111');
 	if($conn->connect_error)
 	{
 		die('connection failed'.$conn->connect_error);

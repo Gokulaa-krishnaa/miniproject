@@ -31,7 +31,35 @@ if(isset($_POST['reg'])){
     }
         
 }
-
+if(isset($_POST['collageid'])){
+    $collageid=$_POST['collageid'];
+    $password=$_POST['password'];
+    $sql="select collageid,password from teacher where collageid=? AND password=?";
+    
+    $stmt=$conn->prepare($sql);
+	$stmt->bind_param("ss",$collageid,$password);
+	$stmt->execute();
+	$stmt->store_result();
+	$rnum=$stmt->num_rows;
+	if($rnum>=1){
+        setcookie('collageid',$collageid);
+        echo "<script>
+		window.location.href='../html/homepage.php';
+		</script>";
+	
+    }
+    else{
+		$user_check="select collageid from teacher where collageid=?";
+		$stmt=$conn->prepare($user_check);
+		$stmt->bind_param("s",$collageid);
+		$stmt->execute();
+		$stmt->store_result();
+		if($stmt->num_rows==0)
+			echo "<script>alert('USER NOT EXISTS');</script>";
+		else
+			echo "<script>alert('INCORRECT PASSWORD');</script>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -59,16 +87,16 @@ if(isset($_POST['reg'])){
             <button type="submit" id="loginbutton" class="submitbutton" name='login'>LOGIN</button>
             <button type="button" id="signupbutton" class="submitbutton" onclick="sgotosignup()">SIGNUP</button>
         </form>
-        <form id="teacherlogin" class="input">
-            <input type="text" class="inputfield" placeholder="TEACHER'S-USER-ID" required>
+        <form id="teacherlogin" class="input" METHOD="post">
+            <input type="text" class="inputfield" placeholder="TEACHER'S-COLLAGEID" name="collageid" required>
             <br><br>
-            <input type="password" class="inputfield" placeholder="PASSWORD" required>
+            <input type="password" class="inputfield" placeholder="PASSWORD" name="password" required>
             <br><br><br>
-            <button type="submit" id="loginbutton" class="submitbutton">LOGIN</button>
+            <button type="submit" id="loginbutton" class="submitbutton" name='tlogin'>LOGIN</button>
             <button type="button" id="signupbutton" class="submitbutton" onclick="tgotosignup()">SIGNUP</button>
         </form>
     </div>
-   <script src="../js/loginpagejs.js"></script>
+   <script src="../js/login&signuppagejs.js"></script>
 
 </body>
 </html>
