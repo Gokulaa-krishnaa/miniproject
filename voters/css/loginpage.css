@@ -1,0 +1,85 @@
+body{
+ background-image: url("../images/votingbgpic.jpg");
+ background-size: cover;
+ background-repeat: no-repeat;
+ background-color: black;}
+.entrybox{
+    background-color: black;
+    position: relative;
+    width: 450px;
+    height: 400px;
+    padding: 5px;
+    margin: 9% auto;
+    border-radius: 5%;
+    overflow: hidden ;
+    opacity: 92%;
+}
+.togglearea{
+    margin: 35px auto;
+    width: 250px;
+    background-color: #7a9d96;
+    position: relative;
+    border-radius: 30px;
+}
+.studentteachertoggle{
+    background: transparent;
+    padding: 15px 25px;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    border-radius: 30px;
+    position: relative;
+}
+#btn{
+    top:0;
+    left: 0;
+    position: absolute;
+    width: 130px;
+    height: 100%;
+    background-color:#EAC67A;
+    border-radius: 30px;
+    transition: 0.5s;
+    /* opacity: 100%; */
+}
+.inputfield{
+    width: 80%;
+    padding: 10px 0;
+    margin: 2%;
+    margin-left: 5%;
+    border-top: 0px ;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 2px solid;
+    border-color:white;
+    /* outline: none; */
+    color :aliceblue;
+    background: transparent;
+}
+.input{
+    /* background-color: black; */
+    top: 120px;
+    position: absolute;
+    transition: 0.5s;
+    width: 400px;
+}
+.submitbutton{
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    margin-left: 22%;
+    background-color:#EAC67A;
+    border-radius: 30px;
+    outline: none;
+}
+#studentlogin{
+    margin-left : 40px;
+}
+#teacherlogin{
+    margin-left: 500px;
+}
+#loginbutton{
+    margin-left : 80px;
+}
+#signupbutton{
+    margin-left: 220px;
+}
