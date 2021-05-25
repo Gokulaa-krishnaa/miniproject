@@ -1,6 +1,6 @@
 <?php 
 
-$conn=new mysqli('localhost','root','','voter','8111');
+$conn=new mysqli('localhost','root','','voter');
 if(isset($_POST['reg'])){
     $reg=$_POST['reg'];
     $password=$_POST['password'];
@@ -14,7 +14,7 @@ if(isset($_POST['reg'])){
 	if($rnum>=1){
         setcookie('reg',$reg);
         echo "<script>
-		window.location.href='../html/profile.php';
+		window.location.href='../html/studentshomepage.php';
 		</script>";
 	
     }
@@ -44,7 +44,7 @@ if(isset($_POST['collageid'])){
 	if($rnum>=1){
         setcookie('collageid',$collageid);
         echo "<script>
-		window.location.href='../html/homepage.php';
+		window.location.href='../html/teacherhomepage.php';
 		</script>";
 	
     }

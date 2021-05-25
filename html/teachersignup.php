@@ -15,7 +15,7 @@ $mailid=$_POST['mailid'];
 $pass1=$_POST['pass1'];
 $pass2=$_POST['pass2'];
 $coord=$dept_codes["year"][$cyear].$dept_codes["dept"][$cdeptt].$dept_codes["sec"][$cclass];
-$conn=new mysqli('localhost','root','','voter','8111');
+$conn=new mysqli('localhost','root','','voter');
 	if($conn->connect_error)
 	{
 		die('connection failed'.$conn->connect_error);

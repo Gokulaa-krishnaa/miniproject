@@ -1,6 +1,6 @@
 <?php
 $id=$_POST["id"];
-$conn=new mysqli('localhost','root','','voter','8111');
+$conn=new mysqli('localhost','root','','voter');
 $sql = "SELECT * FROM poll where id=$id";
 $results =mysqli_query($conn,$sql);
 $result=mysqli_fetch_all($results,MYSQLI_ASSOC);
