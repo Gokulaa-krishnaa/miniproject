@@ -28,6 +28,14 @@ function on() {
   function off() {
     document.getElementById("more-slide").style.display = "none";
   }
+function doflip(index){
+    var temp=document.getElementsByClassName("totalcontent");
+    temp[index].style.transform="rotateY(180deg)";
+}
+function dobackflip(index){
+    var temp=document.getElementsByClassName("totalcontent");
+    temp[index].style.transform="rotateY(0deg)";
+}
 /*************************************studentpage***********************************************/
 function gotosprofile(){
     window.location.href="studentprofile.php";

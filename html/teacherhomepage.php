@@ -32,6 +32,37 @@ $status=$election[0]['status'];
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/teacherhomepage.css">
+    <style>
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: rgb(70,52,78);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5680e9;
+        }
+        #flipback{
+            border-radius: 50%;
+            margin: 5%;
+            position: absolute;
+        }
+        #removebtn{
+            margin-left: 43%;
+            background-color: #C91F37;
+        }
+        #startbtn{
+            margin-left: 55%;
+            background-color: #60DB3C;
+        }
+        #editbtn{
+            /* background-color: black; */
+            margin-left: -20%;
+        }
+        </style>
 </head>
 <body>
 <div class="navbbar">
@@ -48,16 +79,17 @@ $status=$election[0]['status'];
                 <div class="containsf"> -->
 	<div class="maincontainer row">
         <?php if(count($election)>0){
+            $index=0;
             foreach($election as $i)
             { ?>
         <div class="votingcard center col-6">
-            <div class="totalcontent">
+            <div class="totalcontent" id="totalcontentid">
                 
                 <div class="containsf">
                     <h5>POLLID:<?php 
                     echo $i["pollid"];
                     ?></h5><br>
-                    <div class="infobtn">
+                    <div class="infobtn" id="infobtnid" onclick="doflip(<?php echo $index; ?>)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="52" height="72" viewBox="0 0 52 72" id="infobtnn">
                                 <g id="info" transform="translate(-763 -254)">
                                 <g id="Ellipse_257" data-name="Ellipse 257" transform="translate(763 254)" fill="none" stroke="#000" stroke-width="5">
@@ -103,23 +135,36 @@ $status=$election[0]['status'];
                         <button class="btn" id="stopbtn">stop</button>
                         <?php } ?>
                         <?php if($i['status']==1){ ?>
-                    <button class="btn" id="removebtn" onclick="remove()">remove</button>
+                    <button class="btn" id="removebtn" style="margin-left: 43%;" onclick="remove()">remove</button>
                         <?php } ?>
                         <?php if($i['status']==2){ ?>
-                    <button class="btn" id="morebtn" onclick="gotomore()">more</button>
-                        <button class="btn" id="editbtn">edit</button>
+                        <button class="btn" id="editbtn" style="margin-left: 30%;">edit</button>
+                        <button class="btn" id="startbtn">start</button>
                         <?php } ?>
                 </div>
                 <div class="containsb">
-                    <h3>POLL INFO</h3><br>
-                    <h5>Paricipants:</h5>
-                    <h5>Hosted by:</h5>
+                    <button id ="flipback" onclick="dobackflip(<?php echo $index; ?>)">X</button>
+                    <h3 >POLL INFO</h3><br>
+                    <h5 style="margin-top: -3%;">Paricipants:</h5>
+                    <div class="participantsgist" style=" width: 80%;height: 60%;margin: auto 9%;overflow: hidden;overflow-y: scroll;">
+                    <ul class="paritcipantslist" style="color: #c1c8e4;list-style-type: none; text-align: center;font-size: 18px;">
+                        <li>gokul,SEC19CS057</li>
+                        <li>oggy,SEC19CS057</li>
+                        <li>avi,SEC19CS057</li>
+                        <li>nivin,SEC19CS057</li>
+                        <li>sivaram,SEC19CS057</li>
+                        <li>aravindth,SEC19CS057</li>
+                        <li>ganesh,SEC19CS057</li>
+                        <li>rahul,SEC19CS057</li>
+                    </ul>
+                    </div>
+                    <h5 style="margin-top: 2%;">Hosted by:gokul</h5>
                 </div>
             </div>
             
         </div>
         
-            <?php }
+            <?php $index+=1;}
         } ?>
         
         <div class="addpoll col-3">

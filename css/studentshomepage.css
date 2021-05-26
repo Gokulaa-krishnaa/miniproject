@@ -65,9 +65,7 @@ h5{
     transition: transform 0.8s;
     transform-style: preserve-3d;
 }
-.votingcard:active .totalcontent{
-    transform: rotateY(180deg);
-}
+
 .containsf,.containsb{
     background-color: rgba(70,52,78,0.8);
     width: 80%;
@@ -148,3 +146,35 @@ h5{
     border-radius: 30px;
     outline: none;
 }
+#flipback{
+    border-radius: 50%;
+    margin: 5%;
+    position: absolute;
+}
+.paritcipantslist{
+    color: #c1c8e4;
+    list-style-type: none; 
+    text-align: center;
+    font-size: 18px;
+    /* margin: 2; */
+}
+.participantsgist{
+    /* background-color: #c1c8e4 ; */
+    width: 80%;
+    height: 45%;
+    margin: auto 9%;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  
+::-webkit-scrollbar-thumb {
+    background: rgb(70,52,78);
+  }
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #5680e9;
+  }
