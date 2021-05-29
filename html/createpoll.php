@@ -37,9 +37,11 @@ $stmt->execute();
 
 $name=$_SESSION["pollname"];
 $roll=$_SESSION["roll"];
-$sql="insert into starter(pollid,name,roll,startby) values(?,?,?,?)";
+$date=$_SESSION["date"];
+$time=$_SESSION["time"];
+$sql="insert into starter(pollid,name,roll,startby,date,time) values(?,?,?,?,?,?)";
 $stmt=$conn->prepare($sql);
-$stmt->bind_param('isss',$max,$name,$roll,$user);
+$stmt->bind_param('isssss',$max,$name,$roll,$user,$date,$time);
 $stmt->execute();
 
 

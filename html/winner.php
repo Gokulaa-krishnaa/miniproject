@@ -15,5 +15,7 @@ if(count($s)==1){
     $res=mysqli_query($conn,$sql);
     $s=mysqli_fetch_all($res,MYSQLI_ASSOC);
     $wname=$s[0]['name'];
+}else{
+    $wname="TIE";
 }
 ?>

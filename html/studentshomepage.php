@@ -65,7 +65,7 @@ if(isset($_POST["submit"]))
     {
          //type wrong           
         echo "<script>alert('type correctly')</script>";
-        echo "<script>location.href = 'studentshomepage.php' </script>";
+        // echo "<script>location.href = 'studentshomepage.php' </script>";
     }
 }
 ?> 
@@ -172,17 +172,36 @@ if(isset($_POST["submit"]))
                     else{
                         include 'winner.php';
                         echo 'YOUR  '.$i['roll'].'<br>';
-                        ?><h4 style="text-align: center;"><?php echo $wname; ?></h4><?php } ?>
+                        ?><h4 style="text-align: center;"><?php echo $wname; ?>
                     </h5><br>
+                    <form method="POST" action="">
+                    <input type="hidden" value="<?php echo $i['pollid']; ?>" name="pollid"/>
+                    <input class="btn" id="morebtn" type="submit" style="margin-left: 30%;" value="Result" name="wmore"/>
+                    </form>
+                    </h4><?php } ?>
                     <?php if($i['status']==0){ ?>
-                        <!-- //date; -->
+                        <h5><?php echo $i["date"]." ".$i["time"]; ?></h5><br>
                     <?php } ?>
-                    <?php if($i['status']==1){ ?>
+                    <?php if($i['status']==1){ 
+                        $table=$i["pollid"].'b';
+                        $user=$_COOKIE["reg"];
+                        $sql="select register from $table where register=$user";
+                        $res=mysqli_query($conn,$sql);
+                        $res=mysqli_fetch_all($res,MYSQLI_ASSOC);
+                        if(count($res)>0)
+                        $voted=1;
+                        else
+                        $voted=0;   
+                    if($voted==0)    
+                    { 
+                    ?>
                     <form method="post">
                     <input type="hidden" name="pollid" value="<?php echo $i["pollid"] ?>">                    
                     <input type="submit" class="btn" id="votebtn" name="vote" value="vote">
                     </form>
-                    <?php } ?>
+                    <?php }else { ?>
+                        <input type="submit" class="btn" id="votebtn" name="vote" value="voted">
+                    <?php } } ?>
                     <?php if($i['status']==2){ ?>
                     <!-- <form method="post">
                     <input type="hidden" name="pollid" value="<?php echo $i["pollid"] ?>">                    
@@ -246,7 +265,6 @@ if(isset($_POST["submit"]))
                 $_SESSION["id"]=$id;
                 $table1=$id.'a';
                 $table2=$id.'b';
-                $conn=new mysqli('localhost','root','','voter');
                 $sql="select register from $table1";
                 $result=mysqli_query($conn,$sql);
                 $details=mysqli_fetch_all($result,MYSQLI_ASSOC);
@@ -278,6 +296,9 @@ if(isset($_POST["submit"]))
                 </form>
                 
             <?php }
+            else{
+                include "more.php";
+            }
             ?>
 
 
@@ -288,7 +309,7 @@ if(isset($_POST["submit"]))
     <script src="../js/profile&homepage.js"></script>
     <?php
         //invoke both inner and outer pages
-        if(isset($_POST["vote"]) || isset($_POST["votein"]))
+        if(isset($_POST["vote"]) || isset($_POST["votein"]) || isset($_POST["wmore"]))
         {
         echo '<script> 
         document.getElementById("more-slide").style.display = "block";

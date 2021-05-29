@@ -13,6 +13,17 @@ if(isset($_POST['start'])){
     $sql="UPDATE starter set status=1 where pollid=$id";
     mysqli_query($conn,$sql);
 }
+if(isset($_POST['remove'])){
+    $id=$_POST['pollid'];
+    $table1=$id.'a';
+    $table2=$id.'b';
+    $sql="drop table $table1";
+    mysqli_query($conn,$sql);
+    $sql="drop table $table2";
+    mysqli_query($conn,$sql);
+    $sql="delete from starter where pollid=$id";
+    mysqli_query($conn,$sql);
+}
 if(isset($_POST['stop'])){
     $id=$_POST['pollid'];
     $sql="UPDATE starter set status=2 where pollid=$id";
@@ -296,22 +307,39 @@ $status=$election[0]['status'] ?? -1;
 
                             <?php } ?>
                     </div>
-                    <h5><?php 
+                    <h5>
+                    <?php 
+                    if($i['status']!=2) 
                     echo $i["name"];
+                    else{
+                        include 'winner.php';
+                        echo 'WINNER OF  '.$i['roll'].'<br>';
+                        ?><h4 style="text-align: center;"><?php echo $wname; ?></h4><?php 
+                    } 
                     ?></h5><br>
                      <?php if($i['status']==1){ ?>
-                    <button class="btn" id="morebtn" onclick="gotomore()">more</button>
                     <form method="post" action="">
                         <input type="hidden" value="<?php echo $i['pollid']; ?>" name="pollid"/>
-                        <input type="submit" class="btn" id="stopbtn" value="Stop" name="stop" />
+                        <input type="submit" class="btn" id="stopbtn" value="Stop" name="stop" style="margin-left: 43%;" />
                         <!-- <button class="btn" id="stopbtn">stop</button> -->
                         </form>
                         <?php } ?>
                         <?php if($i['status']==2){ ?>
-                    <button class="btn" id="removebtn" style="margin-left: 43%;" onclick="remove()">remove</button>
+                            <form method="POST" action="">
+                            <input type="hidden" value="<?php echo $i['pollid']; ?>" name="pollid"/>
+                            <input class="btn" id="morebtn" type="submit" style="margin-left: 30%;" value="Result" name="wmore"/>
+                            </form>
+                            <form method="POST" action="">
+                            <input type="hidden" value="<?php echo $i['pollid']; ?>" name="pollid"/>
+                            <input class="btn" id="removebtn" type="submit"  value="Delete" name="remove"/>
+                            </form>
                         <?php } ?>
                         <?php if($i['status']==0){ ?>
-                        <button class="btn" id="editbtn" style="margin-left: 30%;">edit</button>
+                            <h5><?php echo $i["date"]." ".$i["time"]; ?></h5><br>
+                            <form method="POST" action="">
+                            <input type="hidden" value="<?php echo $i['pollid']; ?>" name="pollid"/>
+                            <input class="btn" id="morebtn" type="submit" style="margin-left: 30%;" value="More" name="more"/>
+                            </form>
                         <form method="POST" action="">
                             <input type="hidden" value="<?php echo $i['pollid']; ?>" name="pollid"/>
                             <input class="btn" id="startbtn" type="submit" value="Start" name="start"/>
@@ -378,7 +406,22 @@ $status=$election[0]['status'] ?? -1;
             </svg>
         </div>
     </div>
-        
+    <!--***************************preview*******************************  -->
+    <div id="more-slide">
+            <button  id="cancelbtn" onclick="off()">X</button>
+            <?php include 'more.php'; ?>
+        </div>
+        <!-- ************************************************************ -->
+
+
+<?php
+    if(isset($_POST["more"]) || isset($_POST["wmore"]))
+    {
+    echo '<script> 
+    document.getElementById("more-slide").style.display = "block";
+    </script>';
+    }
+?>    
 
 
     <script src="../js/profile&homepage.js">    </script>
@@ -430,6 +473,7 @@ $status=$election[0]['status'] ?? -1;
     function govote(){
         window.location.href=""
     }
+    
 } 
 </script>
 

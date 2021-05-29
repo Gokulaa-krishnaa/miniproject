@@ -1,7 +1,5 @@
 <?php
 $dept_codes=["dept"=>["CSE"=>'1',"MECH"=>"2","ECE"=>"3","EEE"=>"4"],"year"=>["1"=>"1","2"=>"2","3"=>"3","4"=>"4"],"sec"=>["A"=>"1","B"=>"2","C"=>"3","D"=>"4"]];
-$dept_ids=["dept"=>["1","2","3"],"year"=>["1","2","3","4"],"sec"=>["1","2","3","4"]];
-$dept_ids=["dept"=>["1","2","3"],"year"=>["1","2","3","4"],"sec"=>["1","2","3","4"]];
 
 session_start();
 include 'connect.php';
@@ -204,6 +202,10 @@ else if(isset($_GET["add"]))
             <!-- <label for="name">FULL NAME:</label>
             <input type="text" class="inputfield" placeholder="NAME" name="name" required> -->
             <br><br>
+            <strong style="color: white"> POLL DATE:</strong>
+            <input class="inputfield textinput" type="date" id="date" name="date" required>
+            <strong style="color: white"> POLL TIME:</strong>
+            <input class="inputfield textinput" type="time" id="time" name="time" required><br><br>
             <input class="subbtn" id="previewbtn" type="submit" name="preview" value="PREVIEW" />
             </form>
             <button onclick="on()">check</button>
@@ -267,7 +269,16 @@ else if(isset($_GET["add"]))
                 <h1>ROLL</h1><br>
                 <?php
                 echo $_POST["roll"];
-                $_SESSION["roll"]=$_POST["roll"];
+                $_SESSION["roll"]=$_POST["roll"];?>
+                <h5>DATE</h5>
+                <?php
+                echo $_POST["date"];
+                $_SESSION["date"]=$_POST["date"];?>
+                <h5>TIME</h5>
+                <?php
+                echo $_POST["time"];
+                $_SESSION["time"]=$_POST["time"];
+                
             }
             ?>
             <!-- final button -->
