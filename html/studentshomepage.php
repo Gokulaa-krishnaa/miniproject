@@ -45,6 +45,7 @@ if(isset($_POST["submit"]))
         {
             //already voted
             echo "<script>alert('you voted already')</script>";
+            echo "<script>location.href = 'studentshomepage.php' </script>";
         }
         else
         {
@@ -64,6 +65,7 @@ if(isset($_POST["submit"]))
     {
          //type wrong           
         echo "<script>alert('type correctly')</script>";
+        echo "<script>location.href = 'studentshomepage.php' </script>";
     }
 }
 ?> 
@@ -78,6 +80,10 @@ if(isset($_POST["submit"]))
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/studentshomepage.css">
     <style>
+       #votebtn{
+    background-color: #c1c8e4;
+    margin-left: 41%;
+}
         ::-webkit-scrollbar {
             width: 5px;
             height: 5px;
@@ -109,12 +115,6 @@ if(isset($_POST["submit"]))
         <button class="btnn" id="backbutton" onclick="signout()">SIGNOUT</button>
     </div>
 </div>
-<!-- <div class="maincontainer row">
-        <div class="votingcard center col-6">
-            
-            <div class="totalcontent">
-                
-                <div class="containsf"> -->
 	<div class="maincontainer row">
         <?php if(count($election)>0){
             $index=0;
@@ -138,7 +138,7 @@ if(isset($_POST["submit"]))
                                 </g>
                             </svg>
 
-                            <?php if($i['status']==0){ ?>
+                            <?php if($i['status']==1){ ?>
                             <svg xmlns="http://www.w3.org/2000/svg" width="37" height="38" viewBox="0 0 37 38" id="availablelogo">
                                 <g id="Ellipse_251" data-name="Ellipse 251" fill="#50ef0e" stroke="#707070" stroke-width="1">
                                     <ellipse cx="18.5" cy="19" rx="18.5" ry="19" stroke="none"/>
@@ -146,7 +146,7 @@ if(isset($_POST["submit"]))
                                 </g>
                             </svg>
                             <?php } ?>
-                            <?php if($i['status']==1){ ?>
+                            <?php if($i['status']==2){ ?>
                             <svg xmlns="http://www.w3.org/2000/svg" width="37" height="38" viewBox="0 0 37 38" id="availablelogo">
                                 <g id="Ellipse_253" data-name="Ellipse 253" fill="#ef0e0e" stroke="#707070" stroke-width="1">
                                     <ellipse cx="18.5" cy="19" rx="18.5" ry="19" stroke="none"/>
@@ -155,7 +155,7 @@ if(isset($_POST["submit"]))
                             </svg>
 
                             <?php } ?>
-                            <?php if($i['status']==2){ ?>
+                            <?php if($i['status']==0){ ?>
                             <svg xmlns="http://www.w3.org/2000/svg" width="37" height="38" viewBox="0 0 37 38" id="availablelogo">
                                 <g id="Ellipse_252" data-name="Ellipse 252" fill="#d9ef0e" stroke="#707070" stroke-width="1">
                                     <ellipse cx="18.5" cy="19" rx="18.5" ry="19" stroke="none"/>
@@ -165,19 +165,36 @@ if(isset($_POST["submit"]))
 
                             <?php } ?>
                     </div>
-                    <h5><?php 
+                    <h5>
+                    <?php 
+                    if($i['status']!=2) 
                     echo $i["name"];
-                    ?></h5><br>
+                    else{
+                        include 'winner.php';
+                        echo 'YOUR  '.$i['roll'].'<br>';
+                        ?><h4 style="text-align: center;"><?php echo $wname; ?></h4><?php } ?>
+                    </h5><br>
+                    <?php if($i['status']==0){ ?>
+                        <!-- //date; -->
+                    <?php } ?>
+                    <?php if($i['status']==1){ ?>
                     <form method="post">
-                    <input type="hidden" name="pollid" value="<?php echo $i["pollid"] ?>">
+                    <input type="hidden" name="pollid" value="<?php echo $i["pollid"] ?>">                    
                     <input type="submit" class="btn" id="votebtn" name="vote" value="vote">
                     </form>
+                    <?php } ?>
+                    <?php if($i['status']==2){ ?>
+                    <!-- <form method="post">
+                    <input type="hidden" name="pollid" value="<?php echo $i["pollid"] ?>">                    
+                    <input type="submit" class="btn" id="votebtn" name="vote" value="vote">
+                    </form> -->
+                    <?php } ?>
                 </div>
                 <div class="containsb">
                     <button id ="flipback" onclick="dobackflip(<?php echo $index; ?>)">X</button>
                     <h3 >POLL INFO</h3><br>
                     <h5 style="margin-top: -3%;">Paricipants:</h5>
-                    <div class="participantsgist" style=" width: 80%;height: 60%;margin: auto 9%;overflow: hidden;overflow-y: scroll;">
+                    <div class="participantsgist" style=" width: 80%;height: 50%;margin: auto 9%;overflow: hidden;overflow-y: scroll;">
                     <ul class="paritcipantslist" style="color: #c1c8e4;list-style-type: none; text-align: center;font-size: 18px;">
                         <?php 
                         $pollid=$i["pollid"];
@@ -210,7 +227,7 @@ if(isset($_POST["submit"]))
                         }
                     }
                     ?>
-                    <h5 style="margin-top: 2%;">Hosted by: <?php echo $res["name"]."<br>".$res["department"]."<br>".$id; ?></h5>
+                    <h5 >Hosted by: <?php echo $res["name"]."<br>".$id; ?></h5>
                 </div>
             </div>
             
@@ -229,7 +246,7 @@ if(isset($_POST["submit"]))
                 $_SESSION["id"]=$id;
                 $table1=$id.'a';
                 $table2=$id.'b';
-                $conn=new mysqli('localhost','root','','voter','8111');
+                $conn=new mysqli('localhost','root','','voter');
                 $sql="select register from $table1";
                 $result=mysqli_query($conn,$sql);
                 $details=mysqli_fetch_all($result,MYSQLI_ASSOC);
@@ -270,13 +287,13 @@ if(isset($_POST["submit"]))
     </div>
     <script src="../js/profile&homepage.js"></script>
     <?php
-//invoke both inner and outer pages
-if(isset($_POST["vote"]) || isset($_POST["votein"]))
-{
-echo '<script> 
-document.getElementById("more-slide").style.display = "block";
-</script>';
-}
-?>
+        //invoke both inner and outer pages
+        if(isset($_POST["vote"]) || isset($_POST["votein"]))
+        {
+        echo '<script> 
+        document.getElementById("more-slide").style.display = "block";
+        </script>';
+        }
+    ?>
 </body>
 </html>

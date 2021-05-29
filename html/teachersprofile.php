@@ -34,13 +34,13 @@ foreach($detail as $i=>$j)
 	<div class="profilecard">   
         <h1>DETAILS</h1>   
         <div class="detailscard row">
-            <div class="photodetail col-4">
+            <div class="photodetail col-3">
 
             </div>
-            <div class="textdetailslabel col-3">
+            <div class="textdetailslabel col-4">
                 <div class="detailslines ">NAME:   <br></div>
                 <div class="detailslines">    DEPT: <br> </div>  
-                <div class="detailslines">    COORDINATOR OF:  <br></div>
+                <div class="detailslines">    COORDINATOR-OF:  <br></div>
                 <div class="detailslines">    COLLEGE.id:   <br></div>
                 <div class="detailslines">    MOBILE No.:  <br></div>
                 <div class="detailslines">    GENDER:  <br></div>

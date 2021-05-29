@@ -53,6 +53,9 @@ p{
     /* overflow: hidden ; */
     opacity: 92%;
 }
+.textdetailslabel{
+    width: 20%;
+}
 .detailslines{
     padding: 5px;
     font-size: 25px;

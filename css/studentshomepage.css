@@ -118,6 +118,7 @@ h5{
 }
 #votebtn{
     background-color: #c1c8e4;
+    margin-left: 50%;
 }
 
 #Add{
@@ -127,12 +128,14 @@ h5{
     margin-bottom: 30%;
 }
 #more-slide {
-    position: fixed ;
-    display: none;
+    position: fixed ; 
+    display: none; 
     width: 80%;
     height: 80%;
-    margin: auto 5%;
-    margin-top: -2%;
+    top: 5%;
+    left: 10%;
+    right: 10%;
+    bottom: 5%;
     background-color: rgba(193,200,228,0.80);
     z-index: 2;
     border-radius: 5%;

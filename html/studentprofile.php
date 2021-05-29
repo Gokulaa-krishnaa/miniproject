@@ -28,10 +28,10 @@ $detail=$details[0];
 	<div class="profilecard">   
         <h1>DETAILS</h1>   
         <div class="detailscard row">
-            <div class="photodetail col-4">
+            <div class="photodetail col-3">
 
             </div>
-            <div class="textdetailslabel col-3">
+            <div class="textdetailslabel col-4">
                 <div class="detailslines ">NAME:   <br></div>
                 <div class="detailslines">    DEPT & CLASS: <br> </div>  
                 <div class="detailslines">    YEAR:  <br></div>

@@ -69,115 +69,150 @@ else if(isset($_GET["add"]))
 }
 
 ?>
-<html>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="../css/teacherhomepage.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/addpollpage.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="navbbar">
+    <div class="navbtn">
+        <button class="btnn" id="profilebutton" onclick="gotback()">BACK</button>
+        <button class="btnn" id="backbutton" onclick="gototprofile()">PROFILE</button>
+    </div>
+    </div>
+    <html>
+
+
     <!-- class add  -->
-    <h2>ADD CLASSES</h2>
-    <form method="get" action="">
-            <label for="year">YEAR:</label>
-                <select placeholder="YEAR" class="inputfield dropdown" id="year" name="year" required>
-                    <option value="1">I</option>
-                    <option value="2">II</option>
-                    <option value="3">III</option>
-                    <option value="4">IV</option>
-                </select>
-                <br><br>
-            <label for="year">DEPARTMENT:</label>
-                <select placeholder="DEPARTMENT" class="inputfield dropdown" id="dept" name="dept" required>
-                    <option value="CSE">CSE</option>
-                    <option value="MECH">MECH</option>
-                    <option value="ECE">ECE</option>
-                    <option value="ECE">ECE</option>
-                </select>
-                <br><br>
-            <label for="year">SECTION:</label>
-                <select placeholder="SECTION" class="inputfield dropdown" id="sec" name="sec" required>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-                </select>
-                <br><br>
-            <input type='submit' value='Add' name='add'/>
-        </form>
-        <form method="post">
-        <input type="submit" value="Remove All" name="removeall"/>
-        </form>
-        <?php
-        if(!empty($_SESSION["dept_list"]))
-        {
-            foreach($_SESSION["dept_list"] as $keys=>$values)
-            {
-                ?><tr>
-                    <td><?php echo $values["year"]; ?></td>
-                    <td><?php echo $values["dept"]; ?></td>
-                    <td><?php echo $values["sec"]; ?></td>
-                    <td><a href="addpoll.php?action=delete&id=<?php echo $values["dept_id"]; ?>" >Remove </a></td>
-            </tr><br><?php
-            }
+    <div class="enterdetails addclasses">
+        <h2><div class="heads">ADD CLASSES</div></h2>
+        <div class="detailcontent">
+            <form method="get" action="">
+                    <label for="year"><h6 style="color: white">YEAR:</h6></label>
+                        <select placeholder="YEAR" class="inputfield dropdown" id="year" name="year" required>
+                            <option value="1">I</option>
+                            <option value="2">II</option>
+                            <option value="3">III</option>
+                            <option value="4">IV</option>
+                        </select>
+                    <label for="dept"><h6 style="color: white">DEPARTMENT:</h6></label>
+                        <select placeholder="DEPARTMENT" class="inputfield dropdown" id="dept" name="dept" required>
+                            <option value="CSE">CSE</option>
+                            <option value="MECH">MECH</option>
+                            <option value="ECE">ECE</option>
+                            <option value="EEE">EEE</option>
+                        </select>
+                    <label for="sec"><h6 style="color: white">SECTION:</h6></label>
+                        <select placeholder="SECTION" class="inputfield dropdown" id="sec" name="sec" required>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                        </select>
+                        <br><br>
+                        <?php
+                            if(!empty($_SESSION["dept_list"]))
+                            {
+                                foreach($_SESSION["dept_list"] as $keys=>$values)
+                                {
+                                    ?><tr>
+                                        <td><?php echo $values["year"]; ?></td>
+                                        <td><?php echo $values["dept"]; ?></td>
+                                    <td><?php echo $values["sec"]; ?></td>
+                                        <td><a href="addpoll.php?action=delete&id=<?php echo $values["dept_id"]; ?>" >Remove </a></td>
+                                </tr><br><?php
+                                }
+                            }
+                        ?>
+                    <input class="subbtn" id="addbtnn"  type='submit' value='Add' name='add'/>
+                    
+            </form>
+            <form method="post">
+                <input class="subbtn" id="rmvallbtn" type="submit" value="Remove All" name="removeall"/>
+            </form>
             
-        }?>
+        </div>
+    </div>
         <!-- add participants -->
-        <h2>ADD PARTICIPANTS</h2>
-        <form method="post">
-                <input type="text" placeholder="search participants" name="stu_reg"/>
-                <input type="submit" value="search" name="search"/>
-        </form>
-        <?php
-            if(isset($details))
-            {
-                if(count($details)>0)
+        
+    <div class="enterdetails addparticipants">
+        <h2><div class="heads">ADD PARTICIPANTS</div></h2>
+        <div class="detailcontent">
+            <form method="post">
+                <input class="inputfield textinput" type="text" placeholder="Search participants" name="stu_reg"/>
+                <input class="searchbtn" type="submit" value="search" name="search"/>
+            </form>
+            <?php
+                if(isset($details))
                 {
-                    foreach($details as $i)
-                    {?>
-                        <tr>
-                            <td><?php echo $i ;?></td>
-                                    
-                    <?php } if(count($details)>0)
-                            {?>
-                            <td><a href="addpoll.php?action=add&id=<?php echo $reg; ?>" >ADD </a></td>
-                        </tr><br>
-                        <?php } 
-                } 
-            }
-        ?>
-        <!-- printing participants -->
-        <?php
-        if(!empty($_SESSION["stu_list"]))
-        {
-            foreach($_SESSION["stu_list"] as $values)
+                    if(count($details)>0)
+                    {
+                        foreach($details as $i)
+                        {?>
+                            <tr>
+                                <td><?php echo $i ;?></td>
+                                        
+                        <?php } if(count($details)>0)
+                                {?>
+                                <td><a href="addpoll.php?action=add&id=<?php echo $reg; ?>" >ADD </a></td>
+                            </tr><br>
+                            <?php } 
+                    } 
+                }
+            ?>
+            <!-- printing participants -->
+            <?php
+            if(!empty($_SESSION["stu_list"]))
             {
-                // getting student detail
-                $sql="select * from signup where register=$values";
-                $results =mysqli_query($conn,$sql);
-                $detail =mysqli_fetch_all($results,MYSQLI_ASSOC);
+                foreach($_SESSION["stu_list"] as $values)
+                {
+                    // getting student detail
+                    $sql="select * from signup where register=$values";
+                    $results =mysqli_query($conn,$sql);
+                    $detail =mysqli_fetch_all($results,MYSQLI_ASSOC);
+                    
+                    if(count($detail)>0){
+                        $details=$detail[0];
+                    ?><tr>
+                        <td><?php echo $details["name"]; ?></td>
+                        <td><?php echo $details["year"]; ?></td>
+                        <td><?php echo $details["department"]; ?></td>
+                        <td><?php echo $details["class"]; ?></td>
+                        <td><?php echo $details["register"]; ?></td>
+                        <td><?php echo $details["collageid"]; ?></td>
+                        <td><a href="addpoll.php?action=deletep&id=<?php echo $details["register"]; ?>" >Remove </a></td>
+                </tr><br><?php
+                }
+                }
                 
-                if(count($detail)>0){
-                    $details=$detail[0];
-                ?><tr>
-                    <td><?php echo $details["name"]; ?></td>
-                    <td><?php echo $details["year"]; ?></td>
-                    <td><?php echo $details["department"]; ?></td>
-                    <td><?php echo $details["class"]; ?></td>
-                    <td><?php echo $details["register"]; ?></td>
-                    <td><?php echo $details["collageid"]; ?></td>
-                    <td><a href="addpoll.php?action=deletep&id=<?php echo $details["register"]; ?>" >Remove </a></td>
-            </tr><br><?php
-            }
-            }
-            
-        }?>
-        <form method="post">
-        <input type="submit" value="Remove All" name="removeallp"/>
-        </form>
-        <form method="post">
-        ROLL:<input type="text" name="roll" required/>
-        POLL NAME:<input type="text" name="pollname" required/>
-        <input type="submit" name="preview" value="PREVIEW"/>
-        </form>
+            }?>
+            <form method="post">
+            <input class="subbtn" id="rmvallbtn2" type="submit" value="Remove All" name="removeallp"/>
+            </form>
+            <form method="post">
+            <strong style="color: white"> ROLL: </strong>
+            <input   class="inputfield textinput"  type="text" name="roll" required>
+            <!-- <label for="pollname">POLL NAME:</lable>  -->
+            <strong style="color: white"> POLL NAME:</strong>
+            <input class="inputfield textinput" type="text" name="pollname" required>
+            <!-- <label for="name">FULL NAME:</label>
+            <input type="text" class="inputfield" placeholder="NAME" name="name" required> -->
+            <br><br>
+            <input class="subbtn" id="previewbtn" type="submit" name="preview" value="PREVIEW" />
+            </form>
+            <button onclick="on()">check</button>
+
+        </div>
+    </div>
         <!--***************************preview*******************************  -->
-        <div id="more-slide"><button  id="cancelbtn" onclick="off()">X</button>
+        <div id="preview-slide">
+            <button  id="cancelbtn" onclick="off()">X</button>
             <h1>PARTICIPANTS</h1><br>
             <?php
             // this is for participants
@@ -240,8 +275,17 @@ else if(isset($_GET["add"]))
             <input type="submit" value="create poll" name="create"/>
         </div>
         <!-- ************************************************************ -->
-<script src="../js/profile&homepage.js"></script>
 
-        
-    
+
+<script src="../js/addpoll&parcipants.js"></script>
+<?php
+    if(isset($_POST["preview"]))
+    {
+    echo '<script> 
+    document.getElementById("preview-slide").style.display = "block";
+    </script>';
+ }
+?> 
+</body>
+
 </html>
