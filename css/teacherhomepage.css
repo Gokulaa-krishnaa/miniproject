@@ -62,7 +62,7 @@ h5{
     height: 90%;
     margin:  auto;
     margin-top: 1%;
-    margin-left: 15%;
+    margin-left: 25%;
     transition: transform 0.8s;
     transform-style: preserve-3d;
 }
@@ -126,6 +126,14 @@ h5{
     margin-left: 43%;
     background-color: #C91F37;
 }
+#deletebtn{
+    background-color: #C91F37;
+    margin-left:60%;
+}
+#resbtn{
+    background-color: #C1C8E4;
+    margin-left: 28%;
+}
 #editbtn{
     margin-left: 43%;
 }
@@ -155,6 +163,20 @@ h5{
     overflow: hidden;
     overflow-y: scroll;
 }
+#more-slide {
+    position: fixed ; 
+    display: none; 
+    width: 80%;
+    height: 80%;
+    top: 5%;
+    left: 10%;
+    right: 10%;
+    bottom: 5%;
+    background-color: rgba(193,200,228,0.80);
+    z-index: 2;
+    border-radius: 5%;
+    cursor: pointer;
+  }
 ::-webkit-scrollbar {
     width: 5px;
     height: 5px;

@@ -43,7 +43,7 @@ $sql="insert into starter(pollid,name,roll,startby,date,time) values(?,?,?,?,?,?
 $stmt=$conn->prepare($sql);
 $stmt->bind_param('isssss',$max,$name,$roll,$user,$date,$time);
 $stmt->execute();
-
+ 
 
 unset($_SESSION["dept_list"]);
 unset($_SESSION["stu_list"]);

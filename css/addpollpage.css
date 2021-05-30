@@ -3,6 +3,9 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
 }
+h1{
+    text-align: center;
+}
 h2{
     text-align: center;
     margin-top: -1.8%;
@@ -102,6 +105,14 @@ h2{
     margin-left: 3%;
     margin-bottom: 2%;
 }
+#cancelbtn{
+    margin: 1.5%;
+    position: fixed;
+    background-color: #707070;
+    border-radius: 30px;
+    outline: none;
+    position: fixed;
+}
 #preview-slide{
     position: fixed ;
     display: none;  
@@ -111,17 +122,44 @@ h2{
     left: 10%;
     right: 10%;
     bottom: 5%;
-    /* margin: auto 5%; */
-    /* margin-top: -2%; */
     background-color: rgba(193,200,228,0.80);
     z-index: 2;
     border-radius: 5%;
     cursor: pointer;
+    overflow-y: scroll;
 }
 /* #addbtnn{
     
     margin-bottom: 2%;
 }*/
+#createpollbtn{
+    margin: auto 46%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-color: #5680e9;
+}
+
+
+table{
+    border-collapse: collapse;
+    width:100%;
+    }
+th{
+    background-color: #5680e9;
+    }
+td,th{
+    text-align: center;
+    font-weight: bold;
+    border: solid;
+}
+.displayarea{
+    text-align: center;
+    margin: auto 8%;
+    /* color:white; */
+    /* margin-top: -2%; */
+    width: 80%;
+    height: 10%;
+}
 #rmvallbtn2{
     margin-top: 2%;
     
@@ -129,10 +167,16 @@ h2{
 #previewbtn{
     margin-top: 2%;
 }
+#preview-slide h2{
+    margin-top:2%;
+    text-align: center;
+    color: black;
+}
 ::-webkit-scrollbar {
     width: 5px;
-    height: 5px;
-  }
+    height: 2px;
+    margin-right:5px;
+}
   
 ::-webkit-scrollbar-thumb {
     background: rgb(70,52,78);

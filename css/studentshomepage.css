@@ -3,6 +3,9 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
 } 
+h4 ,h6 ,h3, h5{
+    text-align:center;
+}
 h3{
     text-align: center;
     color:azure;
@@ -118,9 +121,8 @@ h5{
 }
 #votebtn{
     background-color: #c1c8e4;
-    margin-left: 50%;
+    /* margin-left:-15%; */
 }
-
 #Add{
     margin: auto 70%;
     margin-top: 30%;
@@ -129,10 +131,11 @@ h5{
 }
 #more-slide {
     position: fixed ; 
+    overflow: scroll;
     display: none; 
     width: 80%;
     height: 80%;
-    top: 5%;
+    top: 10%;
     left: 10%;
     right: 10%;
     bottom: 5%;
@@ -140,7 +143,11 @@ h5{
     z-index: 2;
     border-radius: 5%;
     cursor: pointer;
-  }
+}
+#removebtn{
+    margin-left: 43%;
+    background-color: #C91F37;
+}
 #cancelbtn{
     margin-top: 1%;
     margin-left: 2%;
@@ -148,6 +155,40 @@ h5{
     background-color: #707070;
     border-radius: 30px;
     outline: none;
+    position: fixed;
+}
+#votemebtn{
+    margin-top:40%;
+    margin-left:23%;
+    background-color: #60DB3C;
+}
+.votemecontainer{
+    margin-top: 3%;
+    margin-left: 5%;
+    width:90%;
+}
+.votemecard{ 
+    /* background-color: white; */
+    margin-top: 5%;
+    height: 25em;
+    border-color:black;
+    perspective: 1000px;
+    }
+.votemecontentf{
+    /* background-color: white; */
+    border-style: solid;
+    padding-right: 20%;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    /* border-color: black; */
+    width: 80%;
+    height: 100%;;
+}
+
+#resbtn{
+    background-color: #c0c25f;
+    margin-left: 20%;
 }
 #flipback{
     border-radius: 50%;
@@ -181,3 +222,5 @@ h5{
 ::-webkit-scrollbar-thumb:hover {
     background: #5680e9;
   }
+  
+

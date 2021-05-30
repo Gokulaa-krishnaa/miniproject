@@ -80,31 +80,7 @@ if(isset($_POST["submit"]))
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/studentshomepage.css">
     <style>
-       #votebtn{
-    background-color: #c1c8e4;
-    margin-left: 41%;
-}
-        ::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
-        }
         
-        ::-webkit-scrollbar-thumb {
-            background: rgb(70,52,78);
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #5680e9;
-        }
-        #flipback{
-            border-radius: 50%;
-            margin: 5%;
-            position: absolute;
-        }
-        #removebtn{
-            margin-left: 43%;
-            background-color: #C91F37;
-        }
         
         </style>
 </head>
@@ -172,11 +148,11 @@ if(isset($_POST["submit"]))
                     else{
                         include 'winner.php';
                         echo 'YOUR  '.$i['roll'].'<br>';
-                        ?><h4 style="text-align: center;"><?php echo $wname; ?>
+                        ?><h4 style="text-align: center;"><?php echo $wname; ?></h4>
                     </h5><br>
                     <form method="POST" action="">
                     <input type="hidden" value="<?php echo $i['pollid']; ?>" name="pollid"/>
-                    <input class="btn" id="morebtn" type="submit" style="margin-left: 30%;" value="Result" name="wmore"/>
+                    <input class="btn" id="resbtn" type="submit" style="margin-left: 41%;" value="Result" name="wmore"/>
                     </form>
                     </h4><?php } ?>
                     <?php if($i['status']==0){ ?>
@@ -197,16 +173,13 @@ if(isset($_POST["submit"]))
                     ?>
                     <form method="post">
                     <input type="hidden" name="pollid" value="<?php echo $i["pollid"] ?>">                    
-                    <input type="submit" class="btn" id="votebtn" name="vote" value="vote">
+                    <input type="submit" class="btn" style="margin-left:-7%;" id="votebtn" name="vote" value="vote">
                     </form>
                     <?php }else { ?>
                         <input type="submit" class="btn" id="votebtn" name="vote" value="voted">
                     <?php } } ?>
                     <?php if($i['status']==2){ ?>
-                    <!-- <form method="post">
-                    <input type="hidden" name="pollid" value="<?php echo $i["pollid"] ?>">                    
-                    <input type="submit" class="btn" id="votebtn" name="vote" value="vote">
-                    </form> -->
+                    
                     <?php } ?>
                 </div>
                 <div class="containsb">
@@ -268,20 +241,32 @@ if(isset($_POST["submit"]))
                 $sql="select register from $table1";
                 $result=mysqli_query($conn,$sql);
                 $details=mysqli_fetch_all($result,MYSQLI_ASSOC);
+                ?>
+                 <div class="votemecontainer row">
+                     <?php 
                 foreach($details as $key=>$values)
                 {
-                    $reg=$values["register"];
-                    $sql = "select * from signup where register=$reg";
-                    $results =mysqli_query($conn,$sql);
-                    $r=mysqli_fetch_all($results,MYSQLI_ASSOC);
-                    echo $r[0]["name"]."      ".$r[0]["year"]." ".$r[0]["department"]." ".$r[0]["class"];
-                    ?><form method='post' action=''>
-                    <input type='hidden' value="<?php echo $values["register"]; ?>" name="reg" />
-                    <input type='hidden' value="<?php echo $id; ?>" name="poll" />
-                    <input type='submit' value='vote me' name='votein'/>
-                    </form><br>
+                    ?>
+                   
+                        <div class="votemecard center col-6"> 
+                            <div class="votemecontentf">
+                            <?php 
+                                $reg=$values["register"];
+                                $sql = "select * from signup where register=$reg";
+                                $results =mysqli_query($conn,$sql);
+                                $r=mysqli_fetch_all($results,MYSQLI_ASSOC);
+                                echo "<h4 >".$r[0]["name"]."</h4> <br> <h6>".$r[0]["year"]." ".$r[0]["department"]." ".$r[0]["class"]."</h6>";
+                            ?><form method='post' action=''>
+                            <input type='hidden' value="<?php echo $values["register"]; ?>" name="reg" />
+                            <input type='hidden' value="<?php echo $id; ?>" name="poll" />
+                            <input type='submit' class="btn" id="votemebtn" value='vote me' name='votein'/>
+                            </form>
+                            </div>
+                        </div>
+                   
                     <?php
                 }
+                ?>  </div> <?php
             }
             //this is vote page inner
             elseif(isset($_POST["votein"]))
@@ -289,15 +274,15 @@ if(isset($_POST["submit"]))
                 $_SESSION["pollid"]=$_POST["poll"];
                 $_SESSION["parti"]=$_POST["reg"];
                 ?>
-                type "VOTE" to confirm
+                <h4 style="margin-top:10%">type "VOTE" to confirm<br><br>
                 <form method="post">
                 <input type="text" name="vote"/>
-                <input type="submit" name="submit" value="vote"/>
+                <input class="btn" style="margin-left:-13.5%;background-color:#60DB3C;"  type="submit" name="submit" value="vote"/>
                 </form>
-                
+            </h4>
             <?php }
             else{
-                include "more.php";
+                include "wmore.php";
             }
             ?>
 

@@ -208,14 +208,15 @@ else if(isset($_GET["add"]))
             <input class="inputfield textinput" type="time" id="time" name="time" required><br><br>
             <input class="subbtn" id="previewbtn" type="submit" name="preview" value="PREVIEW" />
             </form>
-            <button onclick="on()">check</button>
 
         </div>
     </div>
         <!--***************************preview*******************************  -->
         <div id="preview-slide">
             <button  id="cancelbtn" onclick="off()">X</button>
-            <h1>PARTICIPANTS</h1><br>
+            <h1 style="text-align:center;">PREVIEW-AREA</h1>
+            <h2>PARTICIPANTS</h2><br>
+            <div class="displayarea">
             <?php
             // this is for participants
                 if(!empty($_SESSION["stu_list"]))
@@ -229,36 +230,62 @@ else if(isset($_GET["add"]))
                         if(count($details))
                         {
                         $details=$details[0];
-                        ?><tr>
+                        ?>
+                        <table>
+                        <tr>
+                            <th>NAME</th>
+                            <th>YEAR</th>
+                            <th>DEPARTMENT</th>
+                            <th>CLASS</th>
+                            <th>REGISTER</th>
+                            <th>COLLEGE-ID</th>
+
+                        </tr>
+                        <tr>
                             <td><?php echo $details["name"]; ?></td>
                             <td><?php echo $details["year"]; ?></td>
                             <td><?php echo $details["department"]; ?></td>
                             <td><?php echo $details["class"]; ?></td>
                             <td><?php echo $details["register"]; ?></td>
                             <td><?php echo $details["collageid"]; ?></td>
-                    </tr><br><?php
+                        </tr>
+                        </table><br><?php
                         }
                     }
                     
                 }
             ?>
-            <h1>classes</h1><br>
+            </div>
+            
+            <h2>CLASSES</h2><br>
+            <div class="displayarea" >
             <?php
             //this is for class
                 if(!empty($_SESSION["dept_list"]))
                 {
                     foreach($_SESSION["dept_list"] as $keys=>$values)
                     {
-                        ?><tr>
+                        ?>
+                        <table>
+                        <tr>
+                            <th>YEAR</th>
+                            <th>DEPARTMENT</th>
+                            <th>SECTION</th>
+                        </tr>
+                        <tr>
                             <td><?php echo $values["year"]; ?></td>
                             <td><?php echo $values["dept"]; ?></td>
                             <td><?php echo $values["sec"]; ?></td>
-                    </tr><br><?php
+                        </tr>
+                    </table>
+                    <br><?php
                     }
                     
                 }
             ?>
-            <h1>POLL NAME</h1><br>
+            </div>
+            <h2>POLL NAME</h2><br>
+            <div class="displayarea" style="font-size: 20px;margin-left:10%;">
             <?php
             //this is for pollname and roll
             if(isset($_POST["preview"]))
@@ -266,15 +293,16 @@ else if(isset($_GET["add"]))
                 echo $_POST["pollname"];
                 $_SESSION["pollname"]=$_POST["pollname"];
                 ?>
-                <h1>ROLL</h1><br>
+                <h2 style="color:black;">ROLL</h2><br>
                 <?php
                 echo $_POST["roll"];
                 $_SESSION["roll"]=$_POST["roll"];?>
-                <h5>DATE</h5>
+                <br><br>
+                <b style="color:black;">DATE</b>
                 <?php
                 echo $_POST["date"];
                 $_SESSION["date"]=$_POST["date"];?>
-                <h5>TIME</h5>
+                <b style="color:black;">TIME</b>
                 <?php
                 echo $_POST["time"];
                 $_SESSION["time"]=$_POST["time"];
@@ -283,7 +311,8 @@ else if(isset($_GET["add"]))
             ?>
             <!-- final button -->
             <form method="post" action="createpoll.php">
-            <input type="submit" value="create poll" name="create"/>
+            <input type="submit" class="btn" id="createpollbtn" value="create poll" name="create"/>
+        </div>
         </div>
         <!-- ************************************************************ -->
 

@@ -124,7 +124,7 @@ $status=$election[0]['status'] ?? -1;
             height: 90%;
             margin:  auto;
             margin-top: 1%;
-            margin-left: 15%;
+            margin-left: 25%;
             transition: transform 0.8s;
             transform-style: preserve-3d;
         }
@@ -174,15 +174,19 @@ $status=$election[0]['status'] ?? -1;
             outline: none;
         }
         #morebtn{
-            background-color: #60DB3C;
+            background-color: #c1c8e4;
         }
         #stopbtn{
-            margin-left: 55%;
+            margin-left: 42%;
             background-color: #60DB3C;
         }
         #startbtn{
             margin-left: 55%;
             background-color: #60DB3C;
+        }
+        #deletebtn{
+            background-color: #C91F37;
+            margin-left: 55%;
         }
         #removebtn{
             margin-left: 43%;
@@ -216,6 +220,29 @@ $status=$election[0]['status'] ?? -1;
             margin: auto 9%;
             overflow: hidden;
             overflow-y: scroll;
+        }
+        #more-slide {
+            position: fixed ; 
+            display: none; 
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            right: 10%;
+            bottom: 5%;
+            background-color: rgba(193,200,228,0.80);
+            z-index: 2;
+            border-radius: 5%;
+            overflow: scroll;
+            cursor: pointer;
+        }
+        #cancelbtn{
+            margin: 1.5%;
+            position: absolute;
+            background-color: #707070;
+            border-radius: 30px;
+            outline: none;
+            position: fixed;
         }
         ::-webkit-scrollbar {
             width: 5px;
@@ -313,25 +340,25 @@ $status=$election[0]['status'] ?? -1;
                     echo $i["name"];
                     else{
                         include 'winner.php';
-                        echo 'WINNER OF  '.$i['roll'].'<br>';
+                        echo 'WINNER OF <div style="text-transform: uppercase> '.$i['roll'].'</div> ELECTION<br>';
                         ?><h4 style="text-align: center;"><?php echo $wname; ?></h4><?php 
                     } 
                     ?></h5><br>
                      <?php if($i['status']==1){ ?>
                     <form method="post" action="">
                         <input type="hidden" value="<?php echo $i['pollid']; ?>" name="pollid"/>
-                        <input type="submit" class="btn" id="stopbtn" value="Stop" name="stop" style="margin-left: 43%;" />
+                        <input type="submit" class="btn" id="stopbtn" value="Stop" name="stop"/>
                         <!-- <button class="btn" id="stopbtn">stop</button> -->
                         </form>
                         <?php } ?>
                         <?php if($i['status']==2){ ?>
                             <form method="POST" action="">
                             <input type="hidden" value="<?php echo $i['pollid']; ?>" name="pollid"/>
-                            <input class="btn" id="morebtn" type="submit" style="margin-left: 30%;" value="Result" name="wmore"/>
+                            <input class="btn" id="resbtn" type="submit" style="margin-left: 28%;" value="Result" name="wmore"/>
                             </form>
                             <form method="POST" action="">
                             <input type="hidden" value="<?php echo $i['pollid']; ?>" name="pollid"/>
-                            <input class="btn" id="removebtn" type="submit"  value="Delete" name="remove"/>
+                            <input class="btn" id="deletebtn" type="submit"  value="Delete" name="remove"/>
                             </form>
                         <?php } ?>
                         <?php if($i['status']==0){ ?>
@@ -409,8 +436,11 @@ $status=$election[0]['status'] ?? -1;
     <!--***************************preview*******************************  -->
     <div id="more-slide">
             <button  id="cancelbtn" onclick="off()">X</button>
-            <?php include 'more.php'; ?>
+            <?php
+            include 'more.php'; 
+            ?>
         </div>
+    
         <!-- ************************************************************ -->
 
 
