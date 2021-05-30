@@ -75,6 +75,12 @@ else if(isset($_GET["add"]))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/addpollpage.css">
+    <style>
+    .displayarea{
+        height:40%;
+        overflow:scroll;
+    }
+    </style>
     <title>Document</title>
 </head>
 <body>
@@ -113,19 +119,30 @@ else if(isset($_GET["add"]))
                             <option value="C">C</option>
                             <option value="D">D</option>
                         </select>
-                        <br><br>
                         <?php
                             if(!empty($_SESSION["dept_list"]))
                             {
+                                ?> <br><br>
+                                <table style="color:white;margin-top= 1%;"> 
+                                    <tr>
+                                        <th>YEAR</th>
+                                        <th>DEPARTMENT</th>
+                                        <th>SECTION</th>
+                                        <th>select/remove</th>
+                                    </tr>
+                                    <?php
                                 foreach($_SESSION["dept_list"] as $keys=>$values)
                                 {
                                     ?><tr>
                                         <td><?php echo $values["year"]; ?></td>
                                         <td><?php echo $values["dept"]; ?></td>
                                     <td><?php echo $values["sec"]; ?></td>
-                                        <td><a href="addpoll.php?action=delete&id=<?php echo $values["dept_id"]; ?>" >Remove </a></td>
-                                </tr><br><?php
+                                    
+                                    <td><a href="addpoll.php?action=delete&id=<?php echo $values["dept_id"]; ?>" >Remove </a></td>
+                                        </tr>
+                                <?php
                                 }
+                                ?></table><br><?php
                             }
                         ?>
                     <input class="subbtn" id="addbtnn"  type='submit' value='Add' name='add'/>
@@ -167,7 +184,20 @@ else if(isset($_GET["add"]))
             <!-- printing participants -->
             <?php
             if(!empty($_SESSION["stu_list"]))
-            {
+            { 
+                ?>
+                <br>
+                <table style="color:white;margin-top= 1%;">
+                <tr>
+                    <th>name</th>
+                    <th>year</th>
+                    <th>department</th>
+                    <th>class</th>
+                    <th>register</th>
+                    <th>collageid</th>
+                    <th>Remove</th>
+            </tr> 
+                <?php
                 foreach($_SESSION["stu_list"] as $values)
                 {
                     // getting student detail
@@ -185,9 +215,10 @@ else if(isset($_GET["add"]))
                         <td><?php echo $details["register"]; ?></td>
                         <td><?php echo $details["collageid"]; ?></td>
                         <td><a href="addpoll.php?action=deletep&id=<?php echo $details["register"]; ?>" >Remove </a></td>
-                </tr><br><?php
-                }
-                }
+                </tr><?php
+                    }
+                }?>
+                </table> <br> <br> <?php
                 
             }?>
             <form method="post">
@@ -215,8 +246,19 @@ else if(isset($_GET["add"]))
         <div id="preview-slide">
             <button  id="cancelbtn" onclick="off()">X</button>
             <h1 style="text-align:center;">PREVIEW-AREA</h1>
-            <h2>PARTICIPANTS</h2><br>
+            
             <div class="displayarea">
+            <h2>PARTICIPANTS</h2><br>
+            <table>
+                        <tr>
+                            <th>NAME</th>
+                            <th>YEAR</th>
+                            <th>DEPARTMENT</th>
+                            <th>CLASS</th>
+                            <th>REGISTER</th>
+                            <th>COLLEGE-ID</th>
+
+                        </tr>
             <?php
             // this is for participants
                 if(!empty($_SESSION["stu_list"]))
@@ -231,16 +273,7 @@ else if(isset($_GET["add"]))
                         {
                         $details=$details[0];
                         ?>
-                        <table>
-                        <tr>
-                            <th>NAME</th>
-                            <th>YEAR</th>
-                            <th>DEPARTMENT</th>
-                            <th>CLASS</th>
-                            <th>REGISTER</th>
-                            <th>COLLEGE-ID</th>
-
-                        </tr>
+                        
                         <tr>
                             <td><?php echo $details["name"]; ?></td>
                             <td><?php echo $details["year"]; ?></td>
@@ -249,16 +282,23 @@ else if(isset($_GET["add"]))
                             <td><?php echo $details["register"]; ?></td>
                             <td><?php echo $details["collageid"]; ?></td>
                         </tr>
-                        </table><br><?php
+                        <?php
                         }
                     }
-                    
+                    ?></table><br><?php
                 }
             ?>
             </div>
             
-            <h2>CLASSES</h2><br>
+            
             <div class="displayarea" >
+            <h2>CLASSES</h2><br>
+            <table>
+                <tr>
+                    <th>YEAR</th>
+                    <th>DEPARTMENT</th>
+                    <th>SECTION</th>
+                </tr>
             <?php
             //this is for class
                 if(!empty($_SESSION["dept_list"]))
@@ -266,36 +306,32 @@ else if(isset($_GET["add"]))
                     foreach($_SESSION["dept_list"] as $keys=>$values)
                     {
                         ?>
-                        <table>
-                        <tr>
-                            <th>YEAR</th>
-                            <th>DEPARTMENT</th>
-                            <th>SECTION</th>
-                        </tr>
+                        
                         <tr>
                             <td><?php echo $values["year"]; ?></td>
                             <td><?php echo $values["dept"]; ?></td>
                             <td><?php echo $values["sec"]; ?></td>
                         </tr>
-                    </table>
-                    <br><?php
+                    <?php
                     }
-                    
+                    ?></table>
+                    <br><?php
                 }
             ?>
             </div>
-            <h2>POLL NAME</h2><br>
+            
             <div class="displayarea" style="font-size: 20px;margin-left:10%;">
+            <h2>POLL NAME</h2><br>
             <?php
             //this is for pollname and roll
             if(isset($_POST["preview"]))
             {
-                echo $_POST["pollname"];
+                echo "<b>".$_POST["pollname"]."<b>";
                 $_SESSION["pollname"]=$_POST["pollname"];
                 ?>
                 <h2 style="color:black;">ROLL</h2><br>
                 <?php
-                echo $_POST["roll"];
+                echo "<b>".$_POST["roll"]."</b>";
                 $_SESSION["roll"]=$_POST["roll"];?>
                 <br><br>
                 <b style="color:black;">DATE</b>
@@ -310,9 +346,10 @@ else if(isset($_GET["add"]))
             }
             ?>
             <!-- final button -->
-            <form method="post" action="createpoll.php">
-            <input type="submit" class="btn" id="createpollbtn" value="create poll" name="create"/>
+            
         </div>
+        <form method="post" action="createpoll.php">
+            <input type="submit" class="btn" id="createpollbtn" value="create poll" name="create"/>
         </div>
         <!-- ************************************************************ -->
 
